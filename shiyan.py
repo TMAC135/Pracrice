@@ -57,23 +57,42 @@ if __name__ == '__main__':
 
 # Experiment about the attribute in class 
 
-class Circle(object):
-	__slots__=('name','age')
-	def __init__(self,name,age,year):
-		self.name=name
-		self.age=age
-		self.yaer=year
-	def __getattr__(self,name):
-		if name=='area':
-			return 4
-		elif name=='length':
-			return 8
-		else:
-			object.__getattr__(self,name)
-	def __setattr__(self,name,value):
-		if name in ['area','length']:
-			raise TypeError('not acceptable')
-		object.__setattr__(self,name,value)
+# class Circle(object):
+# 	__slots__=('name','age')
+# 	def __init__(self,name,age,year):
+# 		self.name=name
+# 		self.age=age
+# 		self.yaer=year
+# 	def __getattr__(self,name):
+# 		if name=='area':
+# 			return 4
+# 		elif name=='length':
+# 			return 8
+# 		else:
+# 			object.__getattr__(self,name)
+# 	def __setattr__(self,name,value):
+# 		if name in ['area','length']:
+# 			raise TypeError('not acceptable')
+# 		object.__setattr__(self,name,value)
+
+
+# experiment of the generator, permutation generator
+
+def permutations(li):
+
+	if len(li)==0:
+		yield li
+	else:
+		for i in range(len(li)):
+			li[0],li[i]=li[i],li[0]
+			for item in permutations(li[1:]):
+				yield [li[0]]+item
+
+
+if __name__=='__main__':
+	for item in permutations(range(5)):
+		print item
+
 
 
 
