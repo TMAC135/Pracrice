@@ -76,6 +76,24 @@ class Solution:
 			for _ in xrange(k):
 				res=[[a] + b for a in nums for b in res if a not in b]
 			return res
+"""
+the above list comprehensions is equivelant to:
+        res = [[]]
+        for _ in xrange(2):
+        	# prev=None
+        	tmp=[]
+        	for a in nums:
+        		
+        		for b in res:
+
+        			if a not in b:
+        				tmp += [[a]+b]
+
+
+        	res=tmp
+        return res
+
+"""
 
 
 
