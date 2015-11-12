@@ -1,3 +1,6 @@
+#coding=utf-8
+
+
 '''
 class superlist(list):
 	def _add_(self,b):
@@ -78,31 +81,80 @@ if __name__ == '__main__':
 
 # experiment of the generator, permutation generator
 
-def permutations(li):
+# def permutations(li):
 
-	if len(li)==0:
-		yield li
-	else:
-		for i in range(len(li)):
-			li[0],li[i]=li[i],li[0]
-			for item in permutations(li[1:]):
-				yield [li[0]]+item
-
-
-if __name__=='__main__':
-	for item in permutations(range(5)):
-		print item
+# 	if len(li)==0:
+# 		yield li
+# 	else:
+# 		for i in range(len(li)):
+# 			li[0],li[i]=li[i],li[0]
+# 			for item in permutations(li[1:]):
+# 				yield [li[0]]+item
 
 
+# if __name__=='__main__':
+# 	for item in permutations(range(5)):
+# 		print item
 
 
+# experiment of the private attribute of the instance
+
+# class A(object):
+# 	"""docstring for A"""
+# 	def __init__(self, arg):
+# 		super(A, self).__init__()
+# 		self.__name= arg
+
+# 	def inf(self):
+# 		print('private value is',self.__name)
 
 
+# a=A(3)
+# a.inf() #('private value is', 3)
+# a.__name=2
+# a.inf() #('private value is', 3)
+# print('out of the class:',a.__name) #('out of the class:', 2)
+# print a.__dict__ #{'__name': 2, '_A__name': 3},注意 _A__names属性
+# print A.__dict__
 
 
+# experiment of the descriptor,set the __init__, __set__,
+# __get__,__delete__
+
+class Nonneg(object):
+	"""
+	descriptor, nonnegtive
+	"""
+	def __init__(self,default=0):
+		self.num = default
+
+	def __get__(self,instance,owner):
+		return self.num
+
+	def __set__(self,instance,val):
+		if val >= 0 :
+			self.num = val
+		else:
+			print 'only valid for non negative number'
+
+	def __delete__(self,instance):
+		print 'can not delete this number'
 
 
+class Movie(object):
+	"""docstring for Movie"""
+	rating=Nonneg()
+	score=Nonneg()
+	def __init__(self, arg):
+		super(Movie, self).__init__()
+		self.arg = arg
 
+
+a=Movie(2)
+a.rating=-1
+a.score=5
+del a.score
+		
 
 
 
