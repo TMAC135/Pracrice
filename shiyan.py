@@ -121,44 +121,86 @@ if __name__ == '__main__':
 # experiment of the descriptor,set the __init__, __set__,
 # __get__,__delete__
 
-class Nonneg(object):
-	"""
-	descriptor, nonnegtive
-	"""
-	def __init__(self,default=0):
-		self.num = default
+# class Nonneg(object):
+# 	"""
+# 	descriptor, nonnegtive
+# 	"""
+# 	def __init__(self,default=0):
+# 		self.num = default
 
-	def __get__(self,instance,owner):
-		return self.num
+# 	def __get__(self,instance,owner):
+# 		return self.num
 
-	def __set__(self,instance,val):
-		if val >= 0 :
-			self.num = val
-		else:
-			print 'only valid for non negative number'
+# 	def __set__(self,instance,val):
+# 		if val >= 0 :
+# 			self.num = val
+# 		else:
+# 			print 'only valid for non negative number'
 
-	def __delete__(self,instance):
-		print 'can not delete this number'
-
-
-class Movie(object):
-	"""docstring for Movie"""
-	rating=Nonneg()
-	score=Nonneg()
-	def __init__(self, arg):
-		super(Movie, self).__init__()
-		self.arg = arg
+# 	def __delete__(self,instance):
+# 		print 'can not delete this number'
 
 
-a=Movie(2)
-a.rating=-1
-a.score=5
-del a.score
+# class Movie(object):
+# 	"""docstring for Movie"""
+# 	rating=Nonneg()
+# 	score=Nonneg()
+# 	def __init__(self, arg):
+# 		super(Movie, self).__init__()
+# 		self.arg = arg
+
+
+# a=Movie(2)
+# a.rating=-1
+# a.score=5
+# del a.score
+
+
+# experiment of metaclass
+# class Mymeta(type):
+# 	"""docstring for Mymeta"typef __init__(self, arg):
+# 	"""
+# 	def __init__(self,name,bases,dicts):
+# 		print 'init instance'
+
+# 	def __new__(cls,name,bases,dicts):
+# 		print 'new instance'
+# 		dicts['inf'] = lambda self: 222
+# 		res=type.__new__(cls,name,bases,dicts)
+# 		res.name='tianran'
+# 		return res
+
+# class A(object):
+# 	"""docstring for A"""
+# 	__metaclass__=Mymeta
+# 	def __init__(self, arg):
+# 		super(A, self).__init__()
+# 		self.arg = arg
+
+# if __name__ == '__main__':
+# 	a=A(2)
+# 	print a.name
+# 	print a.inf()
+
+
+
+# experiment of singleton,python 3.x version
+
+class Singleton(object):
+
+	def __new__(cls,*args,**kwargs):
+		if not hasattr(cls,'_sgl'):
+			cls._sgl = super().__new__(cls,*args,**kwargs)
+		return cls._sgl
+
+
+if __name__ == '__main__':
+	print 2
+	print(id(Singleton()),id(Singleton()))
 		
 
 
 
 
-
-
+		
 
