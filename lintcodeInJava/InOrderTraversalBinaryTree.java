@@ -71,7 +71,8 @@ public class Solution
     }
   
       //一个node配合stack来使用，其中node代表遍历到了哪个节点
-      //much simplier, 
+      //much simplier, 这里的root 元素就是下一步要处理的节点，因为时中序遍历，我们的root开始时尽量指向左边，
+      //但是当左边为空时，我们需要将当前节点弹出，然后指向当前节点的右节点。
       public ArrayList<Integer> inorderTraversal(TreeNode root) 
     {
       ArrayList<Integer> res = new ArrayList<>();
