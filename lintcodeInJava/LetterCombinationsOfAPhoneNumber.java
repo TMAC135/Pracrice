@@ -10,7 +10,7 @@ Return ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"]
 
 
 
-//我的第一次解法，BFS,每次都new出新对象
+//我的第一次解法，BFS,每次都new出新对象，
 public class Solution {
     /**
      * @param digits A digital string
@@ -28,6 +28,9 @@ public class Solution {
         dict.put('7',"pqrs");
         dict.put('8',"tuv");
         dict.put('9',"wxyz");
+
+        //version2 :我们也可以采用字符串数组来记录相应的匹配，因为数字有规律递增的
+        // String[] dic = {" ","", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
       
         ArrayList<String> res = new ArrayList<>();
         if(digits == null || digits.length() == 0) return res;
@@ -64,6 +67,7 @@ public class Solution {
 
 
 //dfs解法： 效率闭bfs要低，因为重复操作元素了
+//例如： "23456"，对于2对应的元素，"abc", 每一个我们都递归调用了"3456"的组合
 public class Solution {
     /**
      * @param digits A digital string
@@ -106,7 +110,7 @@ public class Solution {
 
     public void dfs(ArrayList<String> res,String digits,int index,String tmp,HashMap<Character,String> dict)
     {
-    	//edge case
+    	//edge case,注意这里index代表我们要处理原字符串的位置，如果超过了原字符串的长度，我们已经到最深处了
     	if(index >= digits.length())
     	{
     	    res.add(tmp);

@@ -17,6 +17,7 @@ public class Solution
   */
 
   //我的解法，开始有几个bug,使用了stack 和 stringbuilder,但是memory limit exceed
+  //而且这种解法不具备普遍性，如果是k进制的话怎么办?
     public String addBinary(String a, String b) 
     {
       Stack<Character> stack = new Stack<>();
@@ -86,6 +87,12 @@ public class Solution
 
 
     //别人的解法，思路一样，但是更加巧妙
+    /*
+    注意这题还能有follow-up: 
+    1:如果不是二进制的加法，是k进制，如何修改代码? 
+    2:如果是三个字符串输入呢？
+    */
+
       public String addBinary(String a, String b) {
      int m = a.length();
      int n = b.length();
@@ -110,8 +117,8 @@ public class Solution
              q = 0;
              
          int tmp = p + q + carry;
-         carry = tmp / 2;
-         res += tmp % 2;
+         carry = tmp / 2; //这块可以直接改成k进制
+         res += tmp % 2; 
      }
      return (carry == 0) ? res : "1" + res;
      }
