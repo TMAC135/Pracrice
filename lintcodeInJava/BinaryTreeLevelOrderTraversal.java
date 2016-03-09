@@ -78,7 +78,7 @@ public class BinaryTreeLevelOrderTraversal
         
     }
 
-    //使用queue来解决，看过别人代码后,这种方法是bfs,每次将每层的值打印出来
+//方法2:使用queue来解决，看过别人代码后,这种方法是bfs,每次将每层的值打印出来
     public ArrayList<ArrayList<Integer>> levelOrder(TreeNode root) {
         ArrayList result = new ArrayList();
 
@@ -116,3 +116,16 @@ public class BinaryTreeLevelOrderTraversal
 
     }
 }
+
+//方法3:思想类似于Binary Tree Right Side View（199）这道题，我们使用queue,然后用null来分割每层，
+// 当我们遇到null时，append这个list,这样我们就不用每次new出新的ArrayList了
+/*
+   1            <---
+ /   \
+2     3         <---
+ \     \
+  5     4       <---
+
+栈的存贮情况是: [1,null,2,3,null,5,4,null]
+*/
+
